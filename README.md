@@ -1,8 +1,9 @@
 Simple shell project by Joseph and Aishah
 
+
 0. Betty would be proud
 #mandatory
-Write a beautiful code that passes the Betty checks
+-Write a beautiful code that passes the Betty checks
 
 GitHub repository: simple_shell
   
