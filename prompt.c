@@ -8,12 +8,11 @@
  */
 void prompt(char **av, char **env)
 {
-	char *linepr = NULL;
+#define MAX_COMMAND 10
+	char *argv[MAX_COMMAND], *linepr = NULL;
 	size_t n = 0;
 	ssize_t nd_prg;
-	int i;
-	char *argv[] = {NULL, NULL};
-	int status;
+	int status, i, j;
 	pid_t ch_id;
 
 	while (1)
@@ -33,19 +32,20 @@ void prompt(char **av, char **env)
 				linepr[i] = 0;
 			i++;
 		}
-		argv[0] = linepr;
+		j = 0;
+		argv[j] = strtok(linepr, " ");
+		while (argv[j])
+			argv[++j] = strtok(NULL, " ");
 		ch_id = fork();
 		if (ch_id == -1)
 		{
 			free(linepr);
 			exit(EXIT_FAILURE);
-		}
-		if (ch_id == 0)
+		} else if (ch_id == 0)
 		{
 			if (execve(argv[0], argv, env) == -1)
 				printf("%s: No such file or directory\n", av[0]);
-		}
-		else
+		} else
 			wait(&status);
 	}
 }
