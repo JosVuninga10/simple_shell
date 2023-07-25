@@ -2,17 +2,17 @@
 
 /**
  * main - results in a shell
- * @argc: argument count
- * @argv: argument vector
+ * @ac: argument count
+ * @av: argument vector
  * @env: environment
  *
  * Return: 0
  */
-int main(int argc, char **argv, char **env)
+int main(int ac, char **av, char **env)
 {
-	if (argc == 1)
+	if (ac == 1)
 	{
-		prompt(argv, env);
+		prompt(av, env);
 	}
 	return (0);
 }

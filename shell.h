@@ -5,7 +5,10 @@
 #include <stdlib.h>
 #include <sys/types.h>
 #include <unistd.h>
-int _shell(int argc, char **argv);
-void prompt(char **argv, char **env);
+#include <sys/wait.h>
+#include <string.h>
+
+int main(int ac, char **av, char **env);
+void prompt(char **av, char **env);
 
 #endif
