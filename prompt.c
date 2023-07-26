@@ -8,11 +8,11 @@
  */
 void prompt(char **av, char **env)
 {
-	char *linepr = NULL;
+#define MAX_COMMAND 10
+	char *argv[MAX_COMMAND], *linepr = NULL;
 	size_t n = 0;
-	char *argv[] = {NULL, NULL};
 	ssize_t nd_prg;
-	int status, i;
+	int status, i, j;
 	pid_t ch_id;
 
 	while (1)
@@ -32,7 +32,10 @@ void prompt(char **av, char **env)
 				linepr[i] = 0;
 			i++;
 		}
-		argv[0] = linepr;
+		j = 0;
+		argv[j] = strtok(linepr, " ");
+		while (argv[j])
+			argv[++j] = strtok(NULL, " ");
 		ch_id = fork();
 		if (ch_id == -1)
 		{
