@@ -35,7 +35,7 @@ void prompt(char **av, char **env)
 		} else if (ch_id == 0)
 		{
 			if (execve(argv[0], argv, env) == -1)
-				printf("%s: No such file or directory\n", av[0]);
+				perror(av[0]);
 		} else
 			wait(&status);
 	}
