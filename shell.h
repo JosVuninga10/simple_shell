@@ -11,7 +11,5 @@
 int main(int ac, char **av, char **env);
 void prompt(char **av, char **env);
 void initProcess(char *linepr, ssize_t nd_prg, int i, int j, char *argv[]);
-void strip(char *lineptr);
-void tokenize(char *argv[], char *lineptr);
 
 #endif

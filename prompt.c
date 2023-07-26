@@ -40,6 +40,15 @@ void prompt(char **av, char **env)
 	}
 }
 
+/**
+ * initProcess - inits process...
+ * @linepr: ...
+ * @nd_prg: ...
+ * @i: ...
+ * @j: ...
+ * @argv: ...
+ *
+ */
 void initProcess(char *linepr, ssize_t nd_prg, int i, int j, char *argv[])
 {
 	if (nd_prg == -1)
@@ -58,21 +67,3 @@ void initProcess(char *linepr, ssize_t nd_prg, int i, int j, char *argv[])
 		argv[++j] = strtok(NULL, " ");
 }
 
-void strip(char *lineptr)
-{
-	int i = 0;
-
-	while (&lineptr[i])
-	{
-		if (lineptr[i] == '\n')
-			lineptr[i] = 0;
-		i++;
-	}
-}
-
-void tokenize(char *argv[], char *lineptr)
-{
-	int i = 0;
-
-	argv[i] = strtok(lineptr, " ");
-}
