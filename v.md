@@ -9,27 +9,27 @@
 void prompt(char **av, char **env)
 {
 #define MAX_COMMAND 10
-	char *argv[MAX_COMMAND], *linepr = NULL;
-   	size_t n = 0;
-	ssize_t nd_prg;
-    	int status, i, j;
-    	pid_t ch_id;
+	char *argv[MAX_COMMAND], *lineptr = NULL;
+	int j;
+	
+	int status;
+	pid_t ch_id;
 
 	while (1)
 	{
-		if (isatty(STDIN_FILENO))
-                	printf("kajoseph$ ");
-        	nd_prg = getline(&linepr, &n, stdin);
-		i = 0;
-		j = 0;
-		initProcess(linepr, nd_prg, i, j, argv);
-		/* strip(lineptr); */
+		initProcess(lineptr);
+		strip(lineptr);
 		/* tokenize(argv, lineptr); */
+
+		j = 0;
+		argv[j] = strtok(lineptr, " ");
+		while (argv[j])
+			argv[++j] = strtok(NULL, " ");
 	
 		ch_id = fork();
 		if (ch_id == -1)
 		{
-			free(linepr);
+			free(lineptr);
 			exit(EXIT_FAILURE);
 		} else if (ch_id == 0)
 		{
@@ -40,21 +40,19 @@ void prompt(char **av, char **env)
 	}
 }
 
-void initProcess(char *linepr, ssize_t nd_prg, int i, int j, char *argv[]) {
-    	if (nd_prg == -1)
-    	{
-        	free(linepr);
-        	exit(EXIT_FAILURE);
-    	}
-    	while (linepr[i])
-    	{
-        	if (linepr[i] == '\n')
-            		linepr[i] = 0;
-        	i++;
-    	}
-    	argv[j] = strtok(linepr, " ");
-    	while (argv[j])
-        	argv[++j] = strtok(NULL, " ");
+void initProcess(char *lineptr) {
+        ssize_t nd_prg;
+        size_t n = 0;
+
+        if (isatty(STDIN_FILENO))
+                printf("kajoseph$ ");
+        nd_prg = getline(&lineptr, &n, stdin);
+        if (nd_prg == -1)
+        {
+                free(lineptr);
+                exit(EXIT_FAILURE);
+        }
+        printf("Init finished");
 }
 
 void strip(char *lineptr) {
@@ -77,3 +75,6 @@ void tokenize(char *argv[], char *lineptr) {
                 argv[++i] = strtok(NULL, " ");
 */
 }
+
+
+
