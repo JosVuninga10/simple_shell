@@ -8,7 +8,7 @@
  */
 void prompt(char **av, char **env)
 {
-#define MAX_COMMAND 10
+#define MAX_COMMAND 4096
 	char *argv[MAX_COMMAND], *linepr = NULL;
 	size_t n = 0;
 	ssize_t nd_prg;
