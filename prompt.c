@@ -18,7 +18,7 @@ void prompt(char **av, char **env)
 	while (1)
 	{
 		if (isatty(STDIN_FILENO))
-			printf("kajoseph$ ");
+			printf("kajoseph $ ");
 		nd_prg = getline(&linepr, &n, stdin);
 		i = 0;
 		j = 0;
@@ -27,6 +27,7 @@ void prompt(char **av, char **env)
 		/* tokenize(argv, lineptr); */
 
 		ch_id = fork();
+		waitpid(ch_id, &status, 0);
 		if (ch_id == -1)
 		{
 			free(linepr);
