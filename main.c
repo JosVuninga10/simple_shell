@@ -14,5 +14,6 @@ int main(int ac, char **av, char **env)
 	{
 		prompt(av, env);
 	}
+	putchar('\n');
 	return (0);
 }

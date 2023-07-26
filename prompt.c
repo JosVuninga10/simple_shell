@@ -18,7 +18,7 @@ void prompt(char **av, char **env)
 	while (1)
 	{
 		if (isatty(STDIN_FILENO))
-			write(1, "kajoseph $ ", sizeof("kajoseph $ ") - 1);
+			write(1, "(simple_shell) $ ", sizeof("(simple_shell) $ ") - 1);
 		nd_prg = getline(&linepr, &n, stdin);
 		i = 0;
 		j = 0;
