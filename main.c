@@ -20,7 +20,7 @@ int main(int argc, char *argv[], char **envp)
 	(void) argv;
 	(void) argc;
 
-	signal(SIGINT, sigintHandler);
+	/*signal(SIGINT, sigintHandler);*/
 	while (1)
 	{
 		memset(command, 0, MAX_TERM_LEN);
@@ -64,7 +64,8 @@ int main(int argc, char *argv[], char **envp)
 
 int prompt(char *str)
 {
-	printf(GRN "(simple_shell) " CYN "$ " RESET);
+	if (isatty(STDIN_FILENO))
+		printf("(simple_shell) $ " RESET);
 	if (fgets(str, MAX_TERM_LEN, stdin) == NULL)
 		return (-1);
 	return (0);
