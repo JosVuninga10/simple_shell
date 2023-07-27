@@ -93,9 +93,9 @@ void stripln(char *str, char *command)
 			str[i] = '\0';
 			break;
 		}
-		else if (str[i] != ' ')
+		if (str[i] != ' ')
 			command[count++] = str[i];
-		else if (str[i] == ' ' && i > 0 && !isspace(str[i-1]) && !isspace(str[i+1]))
+		if (str[i] == ' ' && i > 0 && !isspace(str[i - 1]) && !isspace(str[i + 1]))
 			command[count++] = str[i];
 	}
 	command[count] = '\0';
