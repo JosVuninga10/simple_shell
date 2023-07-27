@@ -80,6 +80,7 @@ int prompt(char *str)
 void stripln(char *str, char *command)
 {
 	size_t i = 0;
+	int count = 0;
 
 	memset(command, 0, strlen(command));
 	for (; i < strlen(str) - 1; i++)
@@ -89,9 +90,10 @@ void stripln(char *str, char *command)
 			str[i] = '\0';
 			break;
 		}
-		else
-			command[i] = str[i];
+		else if (str[i] != ' ')
+			command[count++] = str[i];
 	}
+	command[count] = '\0';
 }
 
 /**
