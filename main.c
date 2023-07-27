@@ -30,6 +30,8 @@ int main(int argc, char *argv[], char **envp)
 		if (cmd[0] == '\n')
 			continue;
 		stripln(cmd, command);
+		if (!strlen(command))
+			break;
 		if (!strcmp(command, "exit"))
 			break;
 		if (!strcmp(command, "env"))
