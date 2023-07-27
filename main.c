@@ -1,4 +1,5 @@
 #include "shell.h"
+#include <ctype.h>
 
 void sigintHandler(int sig_num);
 
@@ -93,6 +94,8 @@ void stripln(char *str, char *command)
 			break;
 		}
 		else if (str[i] != ' ')
+			command[count++] = str[i];
+		else if (str[i] == ' ' && i > 0 && !isspace(str[i-1]))
 			command[count++] = str[i];
 	}
 	command[count] = '\0';
